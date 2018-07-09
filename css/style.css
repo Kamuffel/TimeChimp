@@ -1,0 +1,24 @@
+* {
+	margin: 0px;
+	padding: 0px;
+}
+
+html {
+	height: 100%;
+	width: 100%;
+}
+
+body {
+	width: 100%;
+	height: 100%;
+	letter-spacing: 1px;
+	font-family: 'Raleway', sans-serif;
+}
+
+nav > a > h2 {
+	font-family: 'Indie Flower', cursive;
+}
+
+.stroke-style {
+	text-shadow:-1px -1px 0 #007bff96, 1px -1px 0 #007bff96, -1px 1px 0 #007bff96, 1px 1px 0 #007bff96;
+}
