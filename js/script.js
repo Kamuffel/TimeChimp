@@ -20,8 +20,11 @@ $(document).ready(function() {
 		case 'home':
 			importJS(['internal/ajax', 'internal/home']);
 		break;
-		case 'tool':
-			importJS(['internal/ajax', 'internal/tool']);
+		case 'tracker':
+			importJS(['internal/ajax', 'internal/tracker']);
+		break;
+		case 'statistics':
+			importJS(['internal/ajax', 'internal/statistics']);
 		break;
 	}
 });

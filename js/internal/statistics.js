@@ -1,4 +1,4 @@
-console.log('tool')
+console.log('tracker')
 
 var ctx = document.getElementById("myChart").getContext('2d');
 

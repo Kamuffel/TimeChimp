@@ -8,18 +8,36 @@
 	<link href="https://fonts.googleapis.com/css?family=Indie+Flower|Raleway" rel="stylesheet">
 
     <link rel="stylesheet" href="./css/external/btstrp.css">
+    <link rel="stylesheet" href="./css/external/fontawesome.css">
     <link rel="stylesheet" href="./css/style.css">
   </head>
-  <body id="tool">
+  <body id="statistics">
     <nav class="navbar navbar-light border border-bottom-5">
 		<a class="navbar-brand" href="javascript:void(0)">
 			<img src="./css/images/gorilla.svg" width="64" class="d-inline-block align-top float-left" alt="logo">
-			<h2 class="float-left mt-3 ml-2 text-primary stroke-style">TimeChimp (tool)</h2>
+			<h2 class="float-left mt-3 ml-2 text-primary stroke-style">TimeChimp (management)</h2>
 		</a>
 	</nav>
+	<aside>
+		<div class="container">
+			<div class="row my-2">
+				<div class="col col-12">
+					<h2>Menu</h2>
+				</div>
+			</div>
+			<div class="row my-2">
+				<div class="col col-12 text-left">
+					<span><a href="./tracker.php">tracker</a></span><br>
+					<span><a class="text-info">statistics <i class="fas fa-angle-left text-primary"></i></a></span>
+				</div>
+			</div>
+		</div>
+	</aside>
 	<div class="container">
 		<div class="row my-2">
-			<h1>Statistics</h1>
+			<div class="col col-12">
+				<h1>Statistics</h1>
+			</div>
 		</div>
 		<div class="row my-1">
 			<div class="col col-12">

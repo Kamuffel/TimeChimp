@@ -20,5 +20,10 @@ nav > a > h2 {
 }
 
 .stroke-style {
-	text-shadow:-1px -1px 0 #007bff96, 1px -1px 0 #007bff96, -1px 1px 0 #007bff96, 1px 1px 0 #007bff96;
+	text-shadow: -1px -1px 0 #007bff96, 1px -1px 0 #007bff96, -1px 1px 0 #007bff96, 1px 1px 0 #007bff96;
+}
+
+aside {
+	position: fixed;
+	width: 300px;
 }
