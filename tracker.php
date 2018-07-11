@@ -35,9 +35,7 @@
 	</aside>
 	<div class="container">
 		<div class="row my-5">
-			<div class="col col-12">
-				
-			</div>
+			<div class="col col-12"></div>
 		</div>
 		<div class="row my-2">
 			<div class="col col-12"><h1 class="text-center" style="color: #7E85E6;">Tracker</h1></div>
@@ -53,13 +51,13 @@
 			</div>
 		</div>
 		<div class="row my-5">
-			<div class="col col-4">
+			<div class="col col-sm-12 col-md-4 mb-2">
 				<a href="javascript:void(0);" class="btn btn-success w-100 start-timer"><i class="fas fa-briefcase"></i></a>
 			</div>
-			<div class="col col-4">
+			<div class="col col-sm-12 col-md-4 mb-2">
 				<a href="javascript:void(0);" class="btn btn-info w-100 start-break-timer"><i class="fas fa-coffee"></i></a>
 			</div>
-			<div class="col col-4">
+			<div class="col col-sm-12 col-md-4 mb-2">
 				<a href="javascript:void(0);" class="btn btn-danger w-100 stop-timer"><i class="fas fa-stop"></i></a>
 			</div>
 		</div>

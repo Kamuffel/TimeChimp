@@ -9,8 +9,8 @@ var options = {
 	    datasets: [
 				{
 					label: 'hours per month',
-					backgroundColor: 'rgb(255, 99, 132)',
-					borderColor: 'rgb(255, 99, 132)',
+					backgroundColor: '#007bff',
+					borderColor: '#007bff',
 					data: [7, 11, 5, 8, 3, 7, 7, 11, 5, 8, 3, 7],
 					borderWidth: 2,
 					fill: false

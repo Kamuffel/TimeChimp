@@ -65,6 +65,45 @@ $('.stop-timer').click(function() {
 	$('.start-timer').removeClass('disabled');
 	$('.start-break-timer').removeClass('disabled');
 
+	let tracker_data_info = {};
+
+	// retrieve user credentials
+	tracker_data_info['txt_clock_time'] = $('.clock').text();
+	tracker_data_info['txt_clock_break_time'] = $('.clock-break').text();
+
+	// fake loader
+	$(this).css('background-color', 'gray');
+
+	sendAJAX('./lib/middleware/handle_tracker.php', 'POST', {tracker_data : tracker_data_info}, 'json')
+	.done(function(message) {
+
+		$.each(message, function(key, value) {
+			console.log(message);
+
+			switch(value['type'])
+			{
+				case 'simple':
+					$('.' + value['field']).text(value['text']);
+				break;
+				case 'complex' :
+					if(typeof value['name'] !== "undefined") {
+						if (value['name'] == 'user_redirect')
+							window.location.replace(value['action']);
+					}
+				break;
+				default:
+					break;
+			}
+		});
+
+		// set default color and remove loader
+		$(this).css('background-color', '#BD2130');
+
+	}).fail(function(jqXHR, textStatus) {
+		console.log(jqXHR);
+		console.log(textStatus);
+	});
+
 	$('.clock').text('00:00:00');
 	$('.clock-break').text('00:00:00');
 });

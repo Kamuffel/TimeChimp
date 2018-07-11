@@ -44,7 +44,7 @@ if (isset($_SERVER['HTTP_X_REQUESTED_WITH']) && strtolower($_SERVER['HTTP_X_REQU
                 $return_messages[] = array(
                     'type' => 'complex',
                     'name' => 'user_redirect',
-                    'action' => './tool.php'
+                    'action' => './tracker.php'
                 );
             } else {
                 $return_messages[] = array(

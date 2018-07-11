@@ -6,9 +6,7 @@ let clearFields = function() {
 	$('.generic_error').text('');
 };
 
-$('.user_login_btn').click(function() {
-
-	console.log('terstsetse')
+let login = function() {
 	let user_login_info = {};
 
 	// retieve form type
@@ -52,4 +50,13 @@ $('.user_login_btn').click(function() {
 		console.log(jqXHR);
 		console.log(textStatus);
 	});
+};
+
+$('.user_login_btn').click(function() {
+	login();
+});
+
+$('.txt_login_username, .txt_login_password').keydown(function(e){
+    if(e.keyCode == 13)
+    	login();
 });

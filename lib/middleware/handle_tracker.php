@@ -32,10 +32,13 @@ if (isset($_SERVER['HTTP_X_REQUESTED_WITH']) && strtolower($_SERVER['HTTP_X_REQU
             $trackerObj->setClockTime($clock_time);
             $trackerObj->setClockBreakTime($clock_break_time);
 
-            if ($trackerObj->update()) {
+            $tracker_data = $trackerObj->update();
+
+            if (count($tracker_data) > 0) {
                 $return_messages[] = array(
                     'type' => 'complex',
-                    'name' => 'tracker_update'
+                    'name' => 'tracker_update',
+                    'data' => $tracker_data
                 );
             } else {
                 $return_messages[] = array(
