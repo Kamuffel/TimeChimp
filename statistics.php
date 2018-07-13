@@ -70,36 +70,38 @@ $allTrackerInfo = $userObj->getAllTrackerInfo();
 		<div class="row my-5">
 			<div class="col col-12">
 				<h1>History</h1>
-				<table class="table text-center">
-					<thead class="bg-primary text-white">
-						<tr>
-							<th scope="col">#</th>
-							<th scope="col">Start time</th>
-							<th scope="col">End time</th>
-							<th scope="col">Work time</th>
-							<th scope="col">Break time</th>
-							<th scope="col">Activity</th>
-							<th scope="col">Date</th>
-						</tr>
-					</thead>
-					<tbody>
-						<?php
-							if (count($allTrackerInfo) > 0) {
-								foreach ($allTrackerInfo as $key => $tracker_info) {
-									echo '<tr>
-											<th scope="row">'. $tracker_info['T_ID'] .'</th>
-											<td>'. $tracker_info['Start_Time'] .'</td>
-											<td>'. $tracker_info['Stop_Time'] .'</td>
-											<td>'. $tracker_info['Work'] .'</td>
-											<td>'. $tracker_info['Break'] .'</td>
-											<td>'. $tracker_info['Activity'] .'</td>
-											<td>'. $tracker_info['Date'] .'</td>
-										  </tr>';
+				<div class="table-responsive">
+					<table class="table text-center">
+						<thead class="bg-primary text-white">
+							<tr>
+								<th scope="col">#</th>
+								<th scope="col">Start time</th>
+								<th scope="col">End time</th>
+								<th scope="col">Work time</th>
+								<th scope="col">Break time</th>
+								<th scope="col">Activity</th>
+								<th scope="col">Date</th>
+							</tr>
+						</thead>
+						<tbody>
+							<?php
+								if (count($allTrackerInfo) > 0) {
+									foreach ($allTrackerInfo as $key => $tracker_info) {
+										echo '<tr>
+												<th scope="row">'. $tracker_info['T_ID'] .'</th>
+												<td>'. $tracker_info['Start_Time'] .'</td>
+												<td>'. $tracker_info['Stop_Time'] .'</td>
+												<td>'. $tracker_info['Work'] .'</td>
+												<td>'. $tracker_info['Break'] .'</td>
+												<td>'. $tracker_info['Activity'] .'</td>
+												<td>'. $tracker_info['Date'] .'</td>
+											  </tr>';
+									}
 								}
-							}
-						?>
-					</tbody>
-				</table>
+							?>
+						</tbody>
+					</table>
+				</div>
 			</div>
 		</div>
 	</div>
