@@ -42,15 +42,33 @@ if (isset($_SESSION['allowed']))
 			<hr>
 			<div class="row my-2">
 				<div class="col col-12 text-left">
-					<span><a class="text-info">tracker <i class="fas fa-angle-left text-primary"></i></a></span><br>
-					<span><a href="./insert.php">insert</a></span><br>
-					<span><a href="./statistics.php">statistics</a></span><br>
-					<span><a href="./settings.php">settings</a></span>
+					<span><a class="text-info"><i class="fas fa-tachometer-alt"></i> tracker <i class="fas fa-angle-left text-primary"></i></a></span><br>
+					<span><a href="./insert.php"><i class="fas fa-pencil-alt"></i> insert</a></span><br>
+					<span><a href="./statistics.php"><i class="fas fa-chart-bar"></i> statistics</a></span><br>
+					<span><a href="./settings.php"><i class="fas fa-cog"></i> settings</a></span>
 				</div>
 			</div>
 		</div>
 	</aside>
 	<div class="container">
+		<div class="modal fade" tabindex="-1" role="dialog">
+			<div class="modal-dialog" role="document">
+				<div class="modal-content">
+					<div class="modal-header">
+						<h5 class="modal-title">Notice</h5>
+						<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+						<span aria-hidden="true">&times;</span>
+						</button>
+					</div>
+					<div class="modal-body">
+						<p>An activity description is required.</p>
+					</div>
+					<div class="modal-footer">
+						<button type="button" class="btn btn-primary" data-dismiss="modal">OK!</button>
+					</div>
+				</div>
+			</div>
+		</div>
 		<div class="row my-5">
 			<div class="col col-12"></div>
 		</div>
@@ -59,7 +77,8 @@ if (isset($_SESSION['allowed']))
 		</div>
 		<hr>
 		<div class="row my-1">
-			<div class="col col-12"></div>
+			<div class="col col-12">
+			</div>
 		</div>
 		<div class="row my-5">
 			<div class="col col-12 text-center">
@@ -76,6 +95,12 @@ if (isset($_SESSION['allowed']))
 			</div>
 			<div class="col col-sm-12 col-md-4 mb-2">
 				<a href="javascript:void(0);" class="btn btn-danger w-100 stop-timer"><i class="fas fa-stop"></i></a>
+			</div>
+		</div>
+		<div class="row my-1">
+			<div class="col col-12">
+				<h3 class="text-center text-secondary"><i class="fas fa-pencil-alt"></i> Describe your task</h3>
+				<input type="text" class="form-control activity-description" placeholder="Describe your task..." />
 			</div>
 		</div>
 	</div>

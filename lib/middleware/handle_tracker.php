@@ -19,11 +19,15 @@ if (isset($_SERVER['HTTP_X_REQUESTED_WITH']) && strtolower($_SERVER['HTTP_X_REQU
     if (isset($ajaxData['tracker_data'])) {
         $clock_time       = trim(strtolower($ajaxData['tracker_data']['txt_clock_time']));
         $clock_break_time = trim($ajaxData['tracker_data']['txt_clock_break_time']);
+        $activity_description = trim($ajaxData['tracker_data']['txt_activity_description']);
         
         if (empty($clock_time))
-            $return_messages[] = array( );
+            $return_messages[] = array();
         
         if (empty($clock_break_time))
+            $return_messages[] = array();
+
+        if (empty($activity_description))
             $return_messages[] = array();
         
         if (!empty($clock_time) && !empty($clock_break_time)) {
@@ -31,6 +35,7 @@ if (isset($_SERVER['HTTP_X_REQUESTED_WITH']) && strtolower($_SERVER['HTTP_X_REQU
             
             $trackerObj->setClockTime($clock_time);
             $trackerObj->setClockBreakTime($clock_break_time);
+            $trackerObj->setActivityDescription($activity_description);
 
             $tracker_data = $trackerObj->update();
 

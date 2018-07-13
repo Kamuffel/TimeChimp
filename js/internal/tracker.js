@@ -59,6 +59,12 @@ $('.start-break-timer').click(function() {
 });
 
 $('.stop-timer').click(function() {
+
+	if ($('.activity-description').val() == '') {
+		$('.modal').modal('show');
+		return;
+	}
+
 	clearTimeout(timerArray['clock']);
 	clearTimeout(timerArray['clock-break']);
 
@@ -70,6 +76,7 @@ $('.stop-timer').click(function() {
 	// retrieve user credentials
 	tracker_data_info['txt_clock_time'] = $('.clock').text();
 	tracker_data_info['txt_clock_break_time'] = $('.clock-break').text();
+	tracker_data_info['txt_activity_description'] = $('.activity-description').val();
 
 	// fake loader
 	$(this).css('background-color', 'gray');
@@ -86,10 +93,6 @@ $('.stop-timer').click(function() {
 					$('.' + value['field']).text(value['text']);
 				break;
 				case 'complex' :
-					if(typeof value['name'] !== "undefined") {
-						if (value['name'] == 'user_redirect')
-							window.location.replace(value['action']);
-					}
 				break;
 				default:
 					break;
@@ -106,4 +109,5 @@ $('.stop-timer').click(function() {
 
 	$('.clock').text('00:00:00');
 	$('.clock-break').text('00:00:00');
+	$('.activity-description').val('');
 });

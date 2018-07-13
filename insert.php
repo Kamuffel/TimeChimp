@@ -42,10 +42,10 @@ if (isset($_SESSION['allowed']))
 			<hr>
 			<div class="row my-2">
 				<div class="col col-12 text-left">
-					<span><a href="./tracker.php">tracker</a></span><br>
-					<span><a class="text-info">insert <i class="fas fa-angle-left text-primary"></i></a></span><br>
-					<span><a href="./statistics.php">statistics</a></span><br>
-					<span><a href="./settings.php">settings</a></span>
+					<span><a href="./tracker.php"><i class="fas fa-tachometer-alt"></i> tracker</a></span><br>
+					<span><a href="./insert.php"><i class="fas fa-pencil-alt"></i> insert</a></span><br>
+					<span><a class="text-info"><i class="fas fa-chart-bar"></i> statistics <i class="fas fa-angle-left text-primary"></i></a></span><br>
+					<span><a href="./settings.php"><i class="fas fa-cog"></i> settings</a></span>
 				</div>
 			</div>
 		</div>
