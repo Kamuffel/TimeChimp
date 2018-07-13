@@ -62,18 +62,18 @@ if (isset($_SESSION['allowed']))
 					<div class="card-body">
 							<div class="form-group">
 								<label for="txt_start_time">Start time</label> <span class="text-danger lbl_time_start"></span>
-								<input type="time" name="start_time"><br>
+								<input type="time" id="start_time"><br>
 								<label for="txt_stop_time">Stop time</label> <span class="text-danger lbl_time_stop"></span>
-								<input type="time" name="stop_time"><br>
-								<label for="txt_break_time">Start time</label> <span class="text-danger lbl_time_break"></span>
-								<input type="time" name="break_time"><br>								
+								<input type="time" id="stop_time"><br>
+								<label for="txt_break_time">Break time</label> <span class="text-danger lbl_time_break"></span>
+								<input type="time" id="break_time"><br>								
 							</div>
 							<div class="form-group">
 								<label for="txt_activity_description">Activity description</label>
 								<textarea class="form-control" id="activity_description" rows="3"></textarea>
 							</div>
 							
-							<a href="javascript:void(0);" class="btn btn-success w-100 insert_btn">insert</a>
+							<a href="javascript:void(0);" class="btn btn-success w-100 insert_btn">Insert</a>
 					</div>
 					<span class="text-danger text-center generic_error"></span>
 				</div>
