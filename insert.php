@@ -1,3 +1,11 @@
+<?php
+session_start();
+if (isset($_SESSION['allowed']))
+{
+	if (!$_SESSION['allowed'])
+		header('location: ./');
+}
+?>
 <!doctype html>
 <html lang="en">
   <head>
@@ -16,6 +24,7 @@
 		<a class="navbar-brand" href="javascript:void(0)">
 			<img src="./css/images/gorilla.svg" width="64" class="d-inline-block align-top float-left" alt="logo">
 			<h2 class="float-left mt-3 ml-2 text-primary stroke-style">TimeChimp (insert)</h2>
+			<a href="./logout.php" class="btn btn-danger float-right"><i class="fas fa-sign-out-alt"></i> logout</a>
 		</a>
 	</nav>
 	<aside>
@@ -26,10 +35,17 @@
 				</div>
 			</div>
 			<div class="row my-2">
+				<div class="col col-12">
+					<strong><?php echo $_SESSION['username']; ?></strong>
+				</div>
+			</div>
+			<hr>
+			<div class="row my-2">
 				<div class="col col-12 text-left">
-					<span><a class="text-info">insert <i class="fas fa-angle-left text-primary"></i></a></span><br>
 					<span><a href="./tracker.php">tracker</a></span><br>
-					<span><a href="./statistics.php">statistics</a></span>
+					<span><a class="text-info">insert <i class="fas fa-angle-left text-primary"></i></a></span><br>
+					<span><a href="./statistics.php">statistics</a></span><br>
+					<span><a href="./settings.php">settings</a></span>
 				</div>
 			</div>
 		</div>

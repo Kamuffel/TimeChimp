@@ -4,7 +4,7 @@ if (isset($_SERVER['HTTP_X_REQUESTED_WITH']) && strtolower($_SERVER['HTTP_X_REQU
     session_start();
     
     // include user class
-    require_once (dirname(__FILE__) . '/../classes/class.tracker.php');
+    require_once (dirname(__FILE__) . '/../classes/class.user.php');
     
     // set post data
     $ajaxData = $_POST;
@@ -12,33 +12,29 @@ if (isset($_SERVER['HTTP_X_REQUESTED_WITH']) && strtolower($_SERVER['HTTP_X_REQU
     // message holder
     $return_messages = array();
     
-    // Tracker object holder
-    $trackerObj = NULL;
+    // User object holder
+    $userObj = NULL;
     
-    // tracker data
-    if (isset($ajaxData['tracker_data'])) {
-        $clock_time       = trim(strtolower($ajaxData['tracker_data']['txt_clock_time']));
-        $clock_break_time = trim($ajaxData['tracker_data']['txt_clock_break_time']);
+    // login
+    if (isset($ajaxData['profile_data'])) {
+        $hourly_wage = trim(strtolower($ajaxData['profile_data']['txt_hourly_wage']));
         
-        if (empty($clock_time))
-            $return_messages[] = array( );
-        
-        if (empty($clock_break_time))
+        if (empty($hourly_wage))
+            $return_messages[] = array();
+
+        if (!is_numeric($hourly_wage))
             $return_messages[] = array();
         
-        if (!empty($clock_time) && !empty($clock_break_time)) {
-            $trackerObj = new Tracker();
+        if (count($return_messages) == 0) {
+            $userObj = new User();
             
-            $trackerObj->setClockTime($clock_time);
-            $trackerObj->setClockBreakTime($clock_break_time);
+            $userObj->setHourlyWage($hourly_wage);
 
-            $tracker_data = $trackerObj->update();
-
-            if (count($tracker_data) > 0) {
+            if ($userObj->update()) {
                 $return_messages[] = array(
                     'type' => 'complex',
-                    'name' => 'tracker_update',
-                    'data' => $tracker_data
+                    'name' => 'profile_update',
+                    'data' => 'Good'
                 );
             } else {
                 $return_messages[] = array(

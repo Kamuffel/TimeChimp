@@ -1,3 +1,16 @@
+<?php
+session_start();
+if (isset($_SESSION['allowed']))
+{
+	if (!$_SESSION['allowed'])
+		header('location: ./');
+}
+
+require_once('./lib/classes/class.user.php');
+
+$userObj = new User();
+$allTrackerInfo = $userObj->getAllTrackerInfo();
+?>
 <!doctype html>
 <html lang="en">
   <head>
@@ -15,7 +28,8 @@
     <nav class="navbar navbar-light border border-bottom-5">
 		<a class="navbar-brand" href="javascript:void(0)">
 			<img src="./css/images/gorilla.svg" width="64" class="d-inline-block align-top float-left" alt="logo">
-			<h2 class="float-left mt-3 ml-2 text-primary stroke-style">TimeChimp (management)</h2>
+			<h2 class="float-left mt-3 ml-2 text-primary stroke-style">TimeChimp (statistics)</h2>
+			<a href="./logout.php" class="btn btn-danger float-right"><i class="fas fa-sign-out-alt"></i> logout</a>
 		</a>
 	</nav>
 	<aside>
@@ -26,9 +40,17 @@
 				</div>
 			</div>
 			<div class="row my-2">
+				<div class="col col-12">
+					<strong><?php echo $_SESSION['username']; ?></strong>
+				</div>
+			</div>
+			<hr>
+			<div class="row my-2">
 				<div class="col col-12 text-left">
 					<span><a href="./tracker.php">tracker</a></span><br>
-					<span><a class="text-info">statistics <i class="fas fa-angle-left text-primary"></i></a></span>
+					<span><a href="./insert.php">insert</a></span><br>
+					<span><a class="text-info">statistics <i class="fas fa-angle-left text-primary"></i></a></span><br>
+					<span><a href="./settings.php">settings</a></span>
 				</div>
 			</div>
 		</div>
@@ -54,32 +76,28 @@
 							<th scope="col">#</th>
 							<th scope="col">Start time</th>
 							<th scope="col">End time</th>
-							<th scope="col">Total</th>
+							<th scope="col">Work time</th>
+							<th scope="col">Break time</th>
+							<th scope="col">Activity</th>
 							<th scope="col">Date</th>
 						</tr>
 					</thead>
 					<tbody>
-						<tr>
-							<th scope="row">3</th>
-							<td>12:00</td>
-							<td>12:30</td>
-							<td>00:30</td>
-							<td>08-07-2018</td>
-						</tr>
-						<tr>
-							<th scope="row">2</th>
-							<td>13:00</td>
-							<td>13:30</td>
-							<td>00:30</td>
-							<td>07-07-2018</td>
-						</tr>
-						<tr>
-							<th scope="row">1</th>
-							<td>14:00</td>
-							<td>17:30</td>
-							<td>03:30</td>
-							<td>06-07-2018</td>
-						</tr>
+						<?php
+							if (count($allTrackerInfo) > 0) {
+								foreach ($allTrackerInfo as $key => $tracker_info) {
+									echo '<tr>
+											<th scope="row">'. $tracker_info['T_ID'] .'</th>
+											<td>'. $tracker_info['Start_Time'] .'</td>
+											<td>'. $tracker_info['Stop_Time'] .'</td>
+											<td>'. $tracker_info['Work'] .'</td>
+											<td>'. $tracker_info['Break'] .'</td>
+											<td>'. $tracker_info['Activity'] .'</td>
+											<td>'. $tracker_info['Date'] .'</td>
+										  </tr>';
+								}
+							}
+						?>
 					</tbody>
 				</table>
 			</div>

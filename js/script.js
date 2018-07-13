@@ -26,5 +26,8 @@ $(document).ready(function() {
 		case 'statistics':
 			importJS(['internal/ajax', 'internal/statistics']);
 		break;
+		case 'settings':
+			importJS(['internal/ajax', 'internal/settings']);
+		break;
 	}
 });
