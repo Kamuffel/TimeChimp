@@ -78,12 +78,6 @@ if (isset($_SESSION['allowed']))
 		<hr>
 		<div class="row my-1">
 			<div class="col col-12">
-				<div class="row my-1">
-			<div class="col col-12">
-				<h3 class="text-center text-secondary"><i class="fas fa-pencil-alt"></i> Describe your task</h3>
-				<input type="text" class="form-control activity-description" placeholder="Describe your task..." />
-			</div>
-		</div>
 			</div>
 		</div>
 		<div class="row my-5">
@@ -101,6 +95,12 @@ if (isset($_SESSION['allowed']))
 			</div>
 			<div class="col col-sm-12 col-md-4 mb-2">
 				<a href="javascript:void(0);" class="btn btn-danger w-100 stop-timer"><i class="fas fa-stop"></i></a>
+			</div>
+		</div>
+		<div class="row my-1">
+			<div class="col col-12">
+				<h3 class="text-center text-secondary"><i class="fas fa-pencil-alt"></i> Describe your task</h3>
+				<input type="text" class="form-control activity-description" placeholder="Describe your task..." />
 			</div>
 		</div>
 	</div>
