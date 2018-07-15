@@ -41,7 +41,7 @@ $allTrackerInfo = $userObj->getAllTrackerInfo();
 			</div>
 			<div class="row my-2">
 				<div class="col col-12">
-					<strong><?php echo $_SESSION['username']; ?></strong>
+					<i class="fas fa-user"></i> <strong><?php echo $_SESSION['username']; ?></strong>
 				</div>
 			</div>
 			<hr>
