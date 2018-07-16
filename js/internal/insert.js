@@ -1,17 +1,42 @@
 console.log('Insert loaded');
 
-let insert_hours = function() {
-	console.log('Insert hours');
-	let insert_value = {};
-  
-	insert_value['start_time'] = document.getElementById("start_time").value;
-	insert_value['stop_time'] = document.getElementById("stop_time").value;
-	insert_value['break_time'] = document.getElementById("break_time").value;
-	insert_value['activity_description'] = document.getElementById("activity_description").value;
-
-	console.log(insert_value);
-}
-
 $('.insert_btn').click(function() {
-	insert_hours();
+
+	let insert_data_info= {};
+  
+	insert_data_info['start_time']			 = $('#start_time').val() + ':00';
+	insert_data_info['stop_time'] 			 = $('#stop_time').val() + ':00';
+	insert_data_info['break_time']           = $('#break_time').val() + ':00';
+	insert_data_info['activity_description'] = $('#activity_description').val();
+
+	console.log(insert_data_info);
+	
+	// fake loader
+	$(this).css('background-color', 'gray');
+
+	sendAJAX('./lib/middleware/handle_tracker.php', 'POST', {insert_data : insert_data_info}, 'json')
+	.done(function(message) {
+
+		$.each(message, function(key, value) {
+			console.log(message);
+
+			switch(value['type'])
+			{
+				case 'simple':
+					$('.' + value['field']).text(value['text']);
+				break;
+				case 'complex' :
+				break;
+				default:
+					break;
+			}
+		});
+
+		// set default color and remove loader
+		$(this).css('background-color', '#BD2130');
+
+	}).fail(function(jqXHR, textStatus) {
+		console.log(jqXHR);
+		console.log(textStatus);
+	});
 });
