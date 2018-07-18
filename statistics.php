@@ -10,6 +10,7 @@ require_once('./lib/classes/class.user.php');
 
 $userObj = new User();
 $allTrackerInfo = $userObj->getAllTrackerInfo();
+$amountRecords=$userObj->getAmountRecords('activity','T_ID');
 ?>
 <!doctype html>
 <html lang="en">
@@ -70,6 +71,7 @@ $allTrackerInfo = $userObj->getAllTrackerInfo();
 		<div class="row my-5">
 			<div class="col col-12">
 				<h1>History</h1>
+				<?php echo "amount of record: ". $amountRecords; ?>
 				<div class="table-responsive">
 					<table class="table text-center">
 						<thead class="bg-primary text-white">

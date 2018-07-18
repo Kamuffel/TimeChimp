@@ -83,5 +83,14 @@ class Database
 
         return null;
     }
+    public function getAmountRows($tableName, $identifier){
+      $result = $this->_dbc->query("SELECT COUNT($identifier)FROM $tableName");
+      if ($result) {
+        $row = mysqli_fetch_row($result);
+        $total_records = $row[0]; 
+        return $total_records;
+      }
+      return null;
+    }
 }
 ?>
