@@ -65,9 +65,13 @@ class User
 	public function update() {
 		return $this->_MySQLi->putQuery("UPDATE `users` SET `hourly_wage` = '". $this->_hourly_wage ."'");
 	}
-
+	
 	public function getAllTrackerInfo() {
 		return $this->_MySQLi->getQuery("SELECT * FROM `activity` WHERE `User_ID` = '1' ORDER BY `T_ID` DESC");
 	}
+
+		public function getAmountRecords($tableName, $identifier) {
+			return $this->_MySQLi->getAmountRows($tableName, $identifier);
+		}
 }
 ?>

@@ -10,6 +10,7 @@ require_once('./lib/classes/class.user.php');
 
 $userObj = new User();
 $allTrackerInfo = $userObj->getAllTrackerInfo();
+$amountRecords=$userObj->getAmountRecords('activity','T_ID');
 ?>
 <!doctype html>
 <html lang="en">
@@ -41,7 +42,7 @@ $allTrackerInfo = $userObj->getAllTrackerInfo();
 			</div>
 			<div class="row my-2">
 				<div class="col col-12">
-					<strong><?php echo $_SESSION['username']; ?></strong>
+					<i class="fas fa-user"></i> <strong><?php echo $_SESSION['username']; ?></strong>
 				</div>
 			</div>
 			<hr>
@@ -70,6 +71,7 @@ $allTrackerInfo = $userObj->getAllTrackerInfo();
 		<div class="row my-5">
 			<div class="col col-12">
 				<h1>History</h1>
+				<?php echo "amount of record: ". $amountRecords; ?>
 				<div class="table-responsive">
 					<table class="table text-center">
 						<thead class="bg-primary text-white">
@@ -102,6 +104,27 @@ $allTrackerInfo = $userObj->getAllTrackerInfo();
 						</tbody>
 					</table>
 				</div>
+				<nav aria-label="Page navigation example text-center">
+				  <ul class="pagination">
+				    <li class="page-item l_prev">
+				      <a class="page-link" href="javascript:void(0);" aria-label="Previous">
+				        <span aria-hidden="true">&laquo;</span>
+				        <span class="sr-only">Previous</span>
+				      </a>
+				    </li>
+				    <li class="page-item l_p1"><a class="page-link" href="javascript:void(0);">1</a></li>
+				    <li class="page-item l_p2"><a class="page-link" href="javascript:void(0);">2</a></li>
+				    <li class="page-item l_p3"><a class="page-link" href="javascript:void(0);">3</a></li>
+				    <li class="page-item l_p4"><a class="page-link" href="javascript:void(0);">4</a></li>
+				    <li class="page-item l_p5"><a class="page-link" href="javascript:void(0);">5</a></li>
+				    <li class="page-item l_next">
+				      <a class="page-link" href="javascript:void(0);" aria-label="Next">
+				        <span aria-hidden="true">&raquo;</span>
+				        <span class="sr-only">Next</span>
+				      </a>
+				    </li>
+				  </ul>
+				</nav>
 			</div>
 		</div>
 	</div>
