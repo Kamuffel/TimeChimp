@@ -32,7 +32,6 @@ $(function(){
 	new Chart(ctx, options);
 });
 
-
 $('.page-item').click(function() {
 	console.log($(this)[0].className);
 
@@ -41,13 +40,17 @@ $('.page-item').click(function() {
 	let match = regex.exec(classnames);
 	
 	let page_num = match[1];
+	if (page_num.length < 0 && page_num.length > 4) return;
+	
+	let statisctics_data_info = {};
+	statisctics_data_info['page_num'] = page_num;
 
-	if (page_num.length > 0 && page_num.length < 4) return;
 
-	sendAJAX('./lib/middleware/handle_page_change.php', 'POST', {page_data : page_num_info}, 'json')
+	sendAJAX('./lib/middleware/handle_statistics.php', 'POST', {statistics_data : statisctics_data_info}, 'json')
 	.done(function(message) {
 
 		$.each(message, function(key, value) {
+			console.log('Bericht');
 			console.log(message);
 
 			switch(value['type'])
