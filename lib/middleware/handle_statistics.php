@@ -16,17 +16,15 @@ if (isset($_SERVER['HTTP_X_REQUESTED_WITH']) && strtolower($_SERVER['HTTP_X_REQU
     $statsObj = NULL;
     
     // page data
-    if (isset($ajaxData['page_data'])) {
-        $page_num       = trim(strtolower($ajaxData['page_data']['txt_clock_time']));
+    if (isset($ajaxData['statistics_data'])) {
+        $page_num = trim(strtolower($ajaxData['statistics_data']['page_num']));
         
         if (empty($page_num))
             $return_messages[] = array();
         
         if (!empty($page_num)) {
             $statsObj = new Statistics();
-            
-            $statsObj->setPageNum($clock_time);
-
+            $statsObj->setPageNum($page_num);
             $stats_data = $statsObj->request();
 
             if (count($stats_data) > 0) {
