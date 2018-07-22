@@ -7,10 +7,18 @@ if (isset($_SESSION['allowed']))
 }
 
 require_once('./lib/classes/class.user.php');
+require_once('./lib/classes/class.statistics.php');
 
 $userObj = new User();
-$allTrackerInfo = $userObj->getAllTrackerInfo();
+$statObj= new Statistics();
+
+//$allTrackerInfo = $userObj->getAllTrackerInfo();
 $amountRecords=$userObj->getAmountRecords('activity','T_ID');
+$maxRecords =10;
+$totalPages= ceil($amountRecords/$maxRecords);
+$currentPage = $statObj->request();
+$allTrackerInfo = $userObj->getTrackerInfo($currentPage, $maxRecords);
+$statObj->setPageNum($maxRecords);
 ?>
 <!doctype html>
 <html lang="en">
@@ -71,7 +79,11 @@ $amountRecords=$userObj->getAmountRecords('activity','T_ID');
 		<div class="row my-5">
 			<div class="col col-12">
 				<h1>History</h1>
-				<?php echo "amount of record: ". $amountRecords; ?>
+				<?php 
+					echo "amount of record: ". $amountRecords;
+					echo "</br>amount of pages: ". $totalPages;
+					echo "</br> Current page is: ". $currentPage;
+				 ?>
 				<div class="table-responsive">
 					<table class="table text-center">
 						<thead class="bg-primary text-white">
@@ -112,11 +124,12 @@ $amountRecords=$userObj->getAmountRecords('activity','T_ID');
 				        <span class="sr-only">Previous</span>
 				      </a>
 				    </li>
-				    <li class="page-item l_p1"><a class="page-link" href="javascript:void(0);">1</a></li>
-				    <li class="page-item l_p2"><a class="page-link" href="javascript:void(0);">2</a></li>
-				    <li class="page-item l_p3"><a class="page-link" href="javascript:void(0);">3</a></li>
-				    <li class="page-item l_p4"><a class="page-link" href="javascript:void(0);">4</a></li>
-				    <li class="page-item l_p5"><a class="page-link" href="javascript:void(0);">5</a></li>
+				    <?php
+				    for($i=1; $i<=$totalPages; $i++){
+				    	echo '<li class="page-item l_p'. $i.'"><a class="page-link" href="javascript:void(0);">'.$i.'</a></li>';
+				    }
+				    
+				    ?>
 				    <li class="page-item l_next">
 				      <a class="page-link" href="javascript:void(0);" aria-label="Next">
 				        <span aria-hidden="true">&raquo;</span>
