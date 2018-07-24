@@ -13,10 +13,11 @@ $userObj = new User();
 $statObj= new Statistics();
 
 //$allTrackerInfo = $userObj->getAllTrackerInfo();
-$amountRecords=$userObj->getAmountRecords('activity','T_ID');
-$maxRecords =10;
-$totalPages= ceil($amountRecords/$maxRecords);
+$amountRecords = $userObj->getAmountRecords('activity','T_ID');
+$maxRecords = 10;
+$totalPages = ceil($amountRecords / $maxRecords);
 $currentPage = $statObj->request();
+$currentPage = $currentPage['current_page'];
 $allTrackerInfo = $userObj->getTrackerInfo($currentPage, $maxRecords);
 $statObj->setPageNum($maxRecords);
 ?>
@@ -125,10 +126,8 @@ $statObj->setPageNum($maxRecords);
 				      </a>
 				    </li>
 				    <?php
-				    for($i=1; $i<=$totalPages; $i++){
-				    	echo '<li class="page-item l_p'. $i.'"><a class="page-link" href="javascript:void(0);">'.$i.'</a></li>';
-				    }
-				    
+				    for($i=1; $i<=$totalPages; $i++)
+				    	echo '<li class="page-item l_p'. $i.' '. (($i == $currentPage) ? 'active' : '').'"><a class="page-link" href="javascript:void(0);">'.$i.'</a></li>';
 				    ?>
 				    <li class="page-item l_next">
 				      <a class="page-link" href="javascript:void(0);" aria-label="Next">

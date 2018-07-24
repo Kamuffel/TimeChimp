@@ -13,9 +13,12 @@ class Statistics
 
 	public function setPageNum($p_page_num) { $this->_page_num = $p_page_num; }
 
-	public function request() {
-		if($this->_page_num <=0){$this->_page_num= 1;}
-		return $this->_page_num;		
+	public function request()
+	{
+		if($this->_page_num <= 0)
+			$this->_page_num = 1;
+		
+		return array('current_page' => $this->_page_num);		
 	}
 }
 ?>
