@@ -12,14 +12,12 @@ require_once('./lib/classes/class.statistics.php');
 $userObj = new User();
 $statObj= new Statistics();
 
-//$allTrackerInfo = $userObj->getAllTrackerInfo();
 $amountRecords = $userObj->getAmountRecords('activity','T_ID');
 $maxRecords = 10;
 $totalPages = ceil($amountRecords / $maxRecords);
 $currentPage = $statObj->request();
 $currentPage = $currentPage['current_page'];
-$allTrackerInfo = $userObj->getTrackerInfo($currentPage, $maxRecords);
-$statObj->setPageNum($maxRecords);
+$allTrackerInfo = $statObj->getTrackerInfo($currentPage, $maxRecords);
 ?>
 <!doctype html>
 <html lang="en">
@@ -80,11 +78,6 @@ $statObj->setPageNum($maxRecords);
 		<div class="row my-5">
 			<div class="col col-12">
 				<h1>History</h1>
-				<?php 
-					echo "amount of record: ". $amountRecords;
-					echo "</br>amount of pages: ". $totalPages;
-					echo "</br> Current page is: ". $currentPage;
-				 ?>
 				<div class="table-responsive">
 					<table class="table text-center">
 						<thead class="bg-primary text-white">
@@ -98,7 +91,7 @@ $statObj->setPageNum($maxRecords);
 								<th scope="col">Date</th>
 							</tr>
 						</thead>
-						<tbody>
+						<tbody class='view-data-tracker'>
 							<?php
 								if (count($allTrackerInfo) > 0) {
 									foreach ($allTrackerInfo as $key => $tracker_info) {
@@ -119,17 +112,17 @@ $statObj->setPageNum($maxRecords);
 				</div>
 				<nav aria-label="Page navigation example text-center">
 				  <ul class="pagination">
-				    <li class="page-item l_prev">
+				    <li class="page-item l_p<?php echo (($currentPage == $totalPages) ? $currentPage : ($currentPage + 1)); ?>">
 				      <a class="page-link" href="javascript:void(0);" aria-label="Previous">
 				        <span aria-hidden="true">&laquo;</span>
-				        <span class="sr-only">Previous</span>
+				        <span class="sr-only page-item l_p<?php echo (($currentPage == 1) ? $currentPage : ($currentPage - 1)); ?>">previous</span>
 				      </a>
 				    </li>
 				    <?php
-				    for($i=1; $i<=$totalPages; $i++)
+				    for($i = 1; $i <= $totalPages; $i++)
 				    	echo '<li class="page-item l_p'. $i.' '. (($i == $currentPage) ? 'active' : '').'"><a class="page-link" href="javascript:void(0);">'.$i.'</a></li>';
 				    ?>
-				    <li class="page-item l_next">
+				    <li class="page-item l_p<?php echo (($currentPage == $totalPages) ? $currentPage : ($currentPage + 1)); ?>">
 				      <a class="page-link" href="javascript:void(0);" aria-label="Next">
 				        <span aria-hidden="true">&raquo;</span>
 				        <span class="sr-only">Next</span>

@@ -32,7 +32,7 @@ $(function(){
 	new Chart(ctx, options);
 });
 
-$('.page-item').click(function() {
+$(document).on('click', '.page-item', function() {
 	console.log($(this)[0].className);
 
 	let classnames = $(this)[0].className;
@@ -59,6 +59,46 @@ $('.page-item').click(function() {
 					$('.' + value['field']).text(value['text']);
 				break;
 				case 'complex' :
+					if(typeof value['name'] !== 'undefined')
+					{
+						let dataRows = '';
+						$('.view-data-tracker').empty();
+						$('.pagination').html(dataRows);
+						for (let i = 0; i < value['data']['page_data'].length; i++) {
+							dataRows += '<tr>'+
+												'<th scope="row">'+ value['data']['page_data'][i]['T_ID'] +'</th>' +
+												'<td>'+ value['data']['page_data'][i]['Start_Time'] +'</td>' +
+												'<td>'+ value['data']['page_data'][i]['Stop_Time'] +'</td>' +
+												'<td>'+ value['data']['page_data'][i]['Work'] +'</td>' +
+												'<td>'+ value['data']['page_data'][i]['Break'] +'</td>' +
+												'<td>'+ value['data']['page_data'][i]['Activity'] +'</td>' +
+												'<td>'+ value['data']['page_data'][i]['Date'] +'</td>' +
+											  '</tr>';
+						}
+
+						$('.view-data-tracker').html(dataRows);
+
+						let pagination = '<li class="page-item l_p' + ((value['data']['current_page'] == 0) ? value['data']['current_page'] + ' disabled' : (value['data']['current_page'] - 1)) +'">' +
+									      '<a class="page-link" href="javascript:void(0);" aria-label="Previous">' +
+									        '<span aria-hidden="true">«</span>' +
+									        '<span class="sr-only">Previous</span>' +
+									      '</a>' +
+									    '</li>';
+
+						for (let i = 1; i <= value['data']['total_pages']; i++) {
+							let active = ((value['data']['current_page'] == i) ? 'active' : '');
+							pagination += '<li class="page-item l_p'+i+' '+ active +'"><a class="page-link" href="javascript:void(0);">'+i+'</a></li>';
+						}
+
+					    pagination += '<li class="page-item l_p'+ ((value['data']['current_page'] == value['data']['total_pages']) ? value['data']['current_page'] + ' disabled' : (+value['data']['current_page'] + +1)) +'">' +
+									      '<a class="page-link" href="javascript:void(0);" aria-label="Next">'+
+									        '<span aria-hidden="true">»</span>'+
+									        '<span class="sr-only">Next</span>'+
+									      '</a>'+
+									    '</li>';
+
+						$('.pagination').html(pagination);
+					}
 				break;
 				default:
 					break;
