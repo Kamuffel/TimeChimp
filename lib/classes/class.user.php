@@ -69,18 +69,9 @@ class User
 	public function getAllTrackerInfo() {
 		return $this->_MySQLi->getQuery("SELECT * FROM `activity` WHERE `User_ID` = '1' ORDER BY `T_ID` DESC");
 	}
-	public function getTrackerInfo($page, $maxRecords){
-		if($page == 1){
-			$startFrom = 0;
-		} else{
-			$startFrom =($page-1) * $maxRecords;
-		}
-		
-		return $this->_MySQLi->getQuery("SELECT * FROM `activity` WHERE `User_ID` = '1' ORDER BY `T_ID` DESC LIMIT $startFrom, $maxRecords");
-	}
 
-		public function getAmountRecords($tableName, $identifier) {
-			return $this->_MySQLi->getAmountRows($tableName, $identifier);
-		}
+	public function getAmountRecords($tableName, $identifier) {
+		return $this->_MySQLi->getAmountRows($tableName, $identifier);
+	}
 }
 ?>

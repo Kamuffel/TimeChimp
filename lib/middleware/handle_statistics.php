@@ -24,6 +24,7 @@ if (isset($_SERVER['HTTP_X_REQUESTED_WITH']) && strtolower($_SERVER['HTTP_X_REQU
         
         if (!empty($page_num)) {
             $statsObj = new Statistics();
+            
             $statsObj->setPageNum($page_num);
             $stats_data = $statsObj->request();
 

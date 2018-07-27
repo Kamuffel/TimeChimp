@@ -1,9 +1,11 @@
 <?php
 session_start();
 if (isset($_SESSION['allowed']))
-{
+{	
 	if (!$_SESSION['allowed'])
 		header('location: ./');
+}else{
+	header('location: ./');
 }
 ?>
 <!doctype html>
