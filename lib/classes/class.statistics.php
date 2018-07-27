@@ -23,6 +23,10 @@ class Statistics
 		return $this->_MySQLi->getQuery("SELECT * FROM `activity` WHERE `User_ID` = '1' ORDER BY `T_ID` DESC LIMIT $startFrom, $maxRecords");
 	}
 
+	public function removeRecord($t_id){
+		return $this->_MySQLi->putQuery("DELETE FROM `activity` WHERE `T_ID` = $t_id");
+	}
+
 	public function getAmountRecords($tableName, $identifier)
 	{
 		return $this->_MySQLi->getAmountRows($tableName, $identifier);

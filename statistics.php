@@ -1,9 +1,11 @@
 <?php
 session_start();
 if (isset($_SESSION['allowed']))
-{
+{	
 	if (!$_SESSION['allowed'])
 		header('location: ./');
+}else{
+	header('location: ./');
 }
 
 require_once('./lib/classes/class.user.php');
@@ -17,6 +19,7 @@ $maxRecords = 10;
 $totalPages = ceil($amountRecords / $maxRecords);
 $currentPage = $statObj->request();
 $currentPage = $currentPage['current_page'];
+//$result = $statObj->removeRecord(18);
 $allTrackerInfo = $statObj->getTrackerInfo($currentPage, $maxRecords);
 ?>
 <!doctype html>
@@ -89,6 +92,7 @@ $allTrackerInfo = $statObj->getTrackerInfo($currentPage, $maxRecords);
 								<th scope="col">Break time</th>
 								<th scope="col">Activity</th>
 								<th scope="col">Date</th>
+								<th scope="col">Edit</th>
 							</tr>
 						</thead>
 						<tbody class='view-data-tracker'>
@@ -103,6 +107,9 @@ $allTrackerInfo = $statObj->getTrackerInfo($currentPage, $maxRecords);
 												<td>'. $tracker_info['Break'] .'</td>
 												<td>'. $tracker_info['Activity'] .'</td>
 												<td>'. $tracker_info['Date'] .'</td>
+												<td>'."<a href='javascript:editRecord(". $tracker_info['T_ID'] .")' class='btn fas fa-pencil-alt edit_btn' style='color:green'></a>"
+													."<a href='javascript:removeRecord(". $tracker_info['T_ID'] .")' class='btn fas fa-times remove_btn' 
+													style='color:red'></a>".'</td>												
 											  </tr>';
 									}
 								}

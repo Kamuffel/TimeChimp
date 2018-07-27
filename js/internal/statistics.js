@@ -32,6 +32,13 @@ $(function(){
 	new Chart(ctx, options);
 });
 
+function removeRecord($id){
+	console.log('removebtn:' + $id);
+};
+function editRecord($id){
+	console.log('editbtn:' + $id);
+};
+
 $(document).on('click', '.page-item', function() {
 	console.log($(this)[0].className);
 
@@ -73,6 +80,8 @@ $(document).on('click', '.page-item', function() {
 												'<td>'+ value['data']['page_data'][i]['Break'] +'</td>' +
 												'<td>'+ value['data']['page_data'][i]['Activity'] +'</td>' +
 												'<td>'+ value['data']['page_data'][i]['Date'] +'</td>' +
+
+												'<td>'+ "<a href='javascript:removeRecord("+ value['data']['page_data'][i]['T_ID'] +")' class='btn fas fa-times remove_btn' style='color:red'></a>" +'</td>' +
 											  '</tr>';
 						}
 
