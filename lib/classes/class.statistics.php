@@ -24,13 +24,21 @@ class Statistics
 	}
 
 	public function removeRecord($t_id){
-		return $this->_MySQLi->putQuery("DELETE FROM `activity` WHERE `T_ID` = $t_id");
+		 $this->_MySQLi->putQuery("DELETE FROM `activity` WHERE `T_ID` = $t_id");
+		 return $this->_MySQLi->putQuery("ALTER TABLE activity AUTO_INCREMENT = 1");
 	}
 
 	public function getAmountRecords($tableName, $identifier)
 	{
 		return $this->_MySQLi->getAmountRows($tableName, $identifier);
 	}
+
+	public function getRecord($identifier)
+	{
+		return $this->_MySQLi->getQuery("SELECT * FROM `activity` WHERE  `T_ID` = $identifier");
+		//return $this->_MySQLi->getQuery("SELECT * FROM `activity` WHERE `User_ID` = '1' AND `T_ID` = $identifier");
+	}
+
 
 	public function request()
 	{

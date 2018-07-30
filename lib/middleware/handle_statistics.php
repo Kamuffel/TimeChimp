@@ -43,6 +43,40 @@ if (isset($_SERVER['HTTP_X_REQUESTED_WITH']) && strtolower($_SERVER['HTTP_X_REQU
             }
         }
     }
+    //edit or remove record
+    if (isset($ajaxData['statistics_edit'])) {
+        $remove_ID = trim(strtolower($ajaxData['statistics_edit']['remove_ID']));
+        $edit_ID = trim(strtolower($ajaxData['statistics_edit']['edit_ID']));
+
+        if (empty($remove_ID))
+            $return_messages[] = array();
+        
+        if (!empty($remove_ID)) {
+            $statObj= new Statistics();
+            $result = $statObj->removeRecord($remove_ID);
+        }
+
+        if (!empty($edit_ID)) {
+            $statObj= new Statistics();
+            $_SESSION['editrecord']= $edit_ID;
+            header('location: ./');
+        }
+            $stats_data = $statsObj->request();
+            if (count($stats_data) > 0) {
+                $return_messages[] = array(
+                    'type' => 'complex',
+                    'name' => 'page_update',
+                    'data' => $stats_data
+                );
+            } else {
+                $return_messages[] = array(
+                    'type'  => 'simple',
+                    'field' => 'generic_error',
+                    'text'  => 'something went wrong!?',
+                );
+            }
+
+    }
 
     // if messages detected -> output to front-end
     if (count($return_messages) > 0)

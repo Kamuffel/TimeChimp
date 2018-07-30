@@ -21,6 +21,7 @@ $currentPage = $statObj->request();
 $currentPage = $currentPage['current_page'];
 //$result = $statObj->removeRecord(18);
 $allTrackerInfo = $statObj->getTrackerInfo($currentPage, $maxRecords);
+
 ?>
 <!doctype html>
 <html lang="en">
